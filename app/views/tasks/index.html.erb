@@ -1,0 +1,24 @@
+
+<h1>My tasks</h1>
+  <ul>
+    <% @tasks.each do |task| %>
+      <%= link_to task_path(task), class: 'text-decoration-none' do %>
+      <%# pour rajouter une class en erb on utilise :'' et pas class = "" %>
+        <li>
+          <%if task.completed == true %>
+            <i class="fa-regular fa-square-check"></i>
+          <%else %>
+            <i class="fa-regular fa-square"></i>
+          <%end%>
+          <%= task.title %>
+          <%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+            <i class="fa-regular fa-trash-can"></i>
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+    <%= link_to "Add a new task", new_task_path, class: 'btn btn-primary text-decoration-none'%>
+
+
+<%# <i class='fa-solid fa-trash'></i> %>
